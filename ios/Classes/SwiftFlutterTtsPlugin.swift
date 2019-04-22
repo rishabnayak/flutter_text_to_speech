@@ -81,7 +81,7 @@ public class SwiftFlutterTtsPlugin: NSObject, FlutterPlugin, AVSpeechSynthesizer
 
   private func speak(text: String) {
     do {
-        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord)
+        try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.allowBluetooth, .defaultToSpeaker, .duckOthers])
         try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
     } catch {
         print("audioSession properties weren't set because of an error.")
