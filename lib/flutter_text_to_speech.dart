@@ -1,13 +1,10 @@
+library text_to_speech;
+
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-class FlutterTextToSpeech {
-  static const MethodChannel _channel =
-      const MethodChannel('flutter_text_to_speech');
-
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-}
+part 'src/text_to_speech.dart';
+part 'src/voice_manager.dart';
+part 'src/voice_controller.dart';
