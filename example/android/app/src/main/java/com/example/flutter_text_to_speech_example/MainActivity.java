@@ -1,7 +1,6 @@
-package com.tundralabs.flutterttsexample;
+package com.example.flutter_text_to_speech_example;
 
 import android.os.Bundle;
-
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 

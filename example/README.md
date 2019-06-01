@@ -1,95 +1,16 @@
-# Text To Speech
-[![pub package](https://img.shields.io/pub/v/flutter_tts.svg?style=for-the-badge&colorB=green)](https://pub.dartlang.org/packages/flutter_tts)
+# flutter_text_to_speech_example
 
-A flutter text to speech plugin (Swift,Java)
-
-## Features
-
-- [x] Android & iOS
-  - [x] speak
-  - [x] stop
-  - [x] get languages
-  - [x] set language
-  - [x] is language available
-  - [x] set speech rate
-  - [x] set speech volume
-  - [x] set speech pitch
-- [x] Android
-  - [x] get voices
-  - [x] set voice
-
-## Usage
-
-[Example](https://github.com/dlutton/flutter_tts/blob/master/example/lib/main.dart) 
-
-To use this plugin : 
-
-- add the dependency to your [pubspec.yaml](https://github.com/dlutton/flutter_tts/blob/master/example/pubspec.yaml) file.
-
-```yaml
-  dependencies:
-    flutter:
-      sdk: flutter
-    flutter_tts:
-```
-
-- instantiate a FlutterTts instance
-
-```dart
-FlutterTts flutterTts = new FlutterTts();
-```
-
-### speak, stop, getLanguages, setLanguage, setSpeechRate, setVolume, setPitch, isLanguageAvailable
-
-```dart
-Future _speak() async{
-    var result = await flutterTts.speak("Hello World");
-    if (result == 1) setState(() => ttsState = TtsState.playing);
-}
-
-Future _stop() async{
-    var result = await flutterTts.stop();
-    if (result == 1) setState(() => ttsState = TtsState.stopped);
-}
-
-List<dynamic> languages = await flutterTts.getLanguages;
-
-await flutterTts.setLanguage("en-US");
-
-await flutterTts.setSpeechRate(1.0);
-
-await flutterTts.setVolume(1.0);
-
-await flutterTts.setPitch(1.0);
-
-await flutterTts.isLanguageAvailable("en-US");
-```
-
-### Listening for platform calls
-
-```dart
-flutterTts.setStartHandler(() {
-  setState(() {
-    ttsState = TtsState.playing;
-  });
-});
-
-flutterTts.setCompletionHandler(() {
-  setState(() {
-    ttsState = TtsState.stopped;
-  });
-});
-
-flutterTts.setErrorHandler((msg) {
-  setState(() {
-    ttsState = TtsState.stopped;
-  });
-});
-```
+Demonstrates how to use the flutter_text_to_speech plugin.
 
 ## Getting Started
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+This project is a starting point for a Flutter application.
 
-For help on editing plugin code, view the [documentation](https://flutter.io/platform-plugins/#edit-code).
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our 
+[online documentation](https://flutter.dev/docs), which offers tutorials, 
+samples, guidance on mobile development, and a full API reference.

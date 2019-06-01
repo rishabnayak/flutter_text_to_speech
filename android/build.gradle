@@ -1,4 +1,4 @@
-group 'com.tundralabs.fluttertts'
+group 'com.flutter.text_to_speech'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -22,12 +22,11 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 16
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        targetSdkVersion 27
     }
     lintOptions {
         disable 'InvalidPackage'
