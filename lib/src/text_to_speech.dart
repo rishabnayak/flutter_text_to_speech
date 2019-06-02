@@ -1,11 +1,15 @@
 part of text_to_speech;
 
 class FlutterTextToSpeech {
-  static const MethodChannel _channel =
+  FlutterTextToSpeech._();
+
+  @visibleForTesting
+  static const MethodChannel channel =
       const MethodChannel('flutter_text_to_speech');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  static final FlutterTextToSpeech instance = FlutterTextToSpeech._();
+
+  VoiceController voiceController([VoiceControllerOptions options]) {
+    return VoiceController._(options ?? const VoiceControllerOptions());
   }
 }
