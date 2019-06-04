@@ -9,7 +9,7 @@ class FlutterTextToSpeech {
 
   static final FlutterTextToSpeech instance = FlutterTextToSpeech._();
 
-  VoiceController voiceController([VoiceControllerOptions options]) {
-    return VoiceController._(options ?? const VoiceControllerOptions());
+  VoiceController voiceController() {
+    return VoiceController._();
   }
 }

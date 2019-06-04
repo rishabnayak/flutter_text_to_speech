@@ -12,11 +12,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
   @override
   void initState() {
     super.initState();
+    VoiceController controller = FlutterTextToSpeech.instance.voiceController();
+    controller.init().then((_) {
+      controller.speak("text");
+    });
   }
 
   @override
