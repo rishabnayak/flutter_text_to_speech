@@ -70,7 +70,6 @@ class VoiceController {
       throw new Exception("Stop called on an uninitialized VoiceController");
     }
     await FlutterTextToSpeech.channel.invokeMethod("TextToSpeech#Stop");
-    _isInitialized = false;
   }
 }
 
