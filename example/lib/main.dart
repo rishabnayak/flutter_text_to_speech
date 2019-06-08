@@ -17,7 +17,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     VoiceController controller = FlutterTextToSpeech.instance.voiceController();
     controller.init().then((_) {
-      controller.speak("testing audio output");
+      controller.speak(
+          "testing audio output", VoiceControllerOptions(delay: 5));
     });
   }
 

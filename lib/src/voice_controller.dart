@@ -87,5 +87,5 @@ class VoiceControllerOptions {
   final double speechRate;
   final double pitch;
   final double volume;
-  final double delay;
+  final int delay;
 }
