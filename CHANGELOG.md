@@ -1,3 +1,7 @@
+## 3.0.6
+
+* Error fix
+
 ## 3.0.5
 
 * Working Delay

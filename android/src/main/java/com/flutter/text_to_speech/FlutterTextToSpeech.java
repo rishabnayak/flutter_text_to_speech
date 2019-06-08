@@ -3,7 +3,6 @@ package com.flutter.text_to_speech;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.UtteranceProgressListener;
 
 import java.util.ArrayList;
 import java.util.List;
