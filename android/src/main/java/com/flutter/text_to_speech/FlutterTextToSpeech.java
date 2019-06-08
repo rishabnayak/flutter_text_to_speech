@@ -3,6 +3,7 @@ package com.flutter.text_to_speech;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,12 +66,30 @@ class FlutterTextToSpeech implements TTSAgent, TextToSpeech.OnInitListener {
     }
 
     @Override
-    public void speak(Context context, String text, Map<String, Object> options, MethodChannel.Result result) {
+    public void speak(Context context, final String text, Map<String, Object> options, MethodChannel.Result result) {
         ttsAgent.setPitch(Float.parseFloat(options.get("pitch").toString()));
         ttsAgent.setSpeechRate(Float.parseFloat(options.get("speechRate").toString()));
         bundle.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, Float.parseFloat(options.get("volume").toString()));
-        ttsAgent.playSilentUtterance(Long.parseLong(options.get("delay").toString())*1000, TextToSpeech.QUEUE_FLUSH, UUID.randomUUID().toString());
-        ttsAgent.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, UUID.randomUUID().toString());
+        final String silent = UUID.randomUUID().toString();
+        ttsAgent.playSilentUtterance(Long.parseLong(options.get("delay").toString())*1000, TextToSpeech.QUEUE_FLUSH, silent);
+        ttsAgent.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String s) {
+
+            }
+
+            @Override
+            public void onDone(String s) {
+                if (s.equals(silent)){
+                    ttsAgent.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, UUID.randomUUID().toString());
+                }
+            }
+
+            @Override
+            public void onError(String s) {
+
+            }
+        });
     }
 
     @Override
