@@ -60,6 +60,7 @@ class VoiceController {
             options?.speechRate ?? VoiceControllerOptions().speechRate,
         "pitch": options?.pitch ?? VoiceControllerOptions().pitch,
         "volume": options?.volume ?? VoiceControllerOptions().volume,
+        "delay": options?.delay ?? VoiceControllerOptions().delay,
       },
       "text": text
     });
@@ -75,7 +76,7 @@ class VoiceController {
 
 class VoiceControllerOptions {
   const VoiceControllerOptions(
-      {this.speechRate = 1, this.pitch = 1, this.volume = 1})
+      {this.speechRate = 1, this.pitch = 1, this.volume = 1, this.delay = 0})
       : assert(speechRate >= 0.5),
         assert(speechRate <= 2),
         assert(pitch >= 0.5),
@@ -86,4 +87,5 @@ class VoiceControllerOptions {
   final double speechRate;
   final double pitch;
   final double volume;
+  final double delay;
 }

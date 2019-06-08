@@ -75,6 +75,7 @@ NSMutableArray<NSString *> *languageSet;
     NSError *error;
     [[AVAudioSession sharedInstance] setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
     utterance = [AVSpeechUtterance speechUtteranceWithString:text];
+    utterance.preUtteranceDelay = [options[@"delay"] floatValue];
     utterance.pitchMultiplier = [options[@"pitch"] floatValue];
     if ([options[@"speechRate"] floatValue] == 1){
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate;

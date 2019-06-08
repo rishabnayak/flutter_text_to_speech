@@ -69,6 +69,7 @@ class FlutterTextToSpeech implements TTSAgent, TextToSpeech.OnInitListener {
         ttsAgent.setPitch(Float.parseFloat(options.get("pitch").toString()));
         ttsAgent.setSpeechRate(Float.parseFloat(options.get("speechRate").toString()));
         bundle.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, Float.parseFloat(options.get("volume").toString()));
+        ttsAgent.playSilentUtterance(Long.parseLong(options.get("delay").toString())*1000, TextToSpeech.QUEUE_FLUSH, UUID.randomUUID().toString());
         ttsAgent.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, UUID.randomUUID().toString());
     }
 
