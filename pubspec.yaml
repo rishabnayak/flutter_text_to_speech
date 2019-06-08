@@ -1,6 +1,6 @@
 name: flutter_text_to_speech
 description: An on-device Flutter Text-to-Speech plugin
-version: 3.0.1
+version: 3.0.2
 authors:
   - Rishab Nayak <rishab@bu.edu>
   - Nikzad Khani <nikzad@bu.edu>

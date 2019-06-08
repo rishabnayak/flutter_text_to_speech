@@ -40,6 +40,8 @@ NSMutableArray<NSString *> *languageSet;
 }
 
 + (void)init:(FlutterResult)result{
+    NSError *error;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:(AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionDefaultToSpeaker) error:&error];
     synth = [AVSpeechSynthesizer alloc];
     voices = AVSpeechSynthesisVoice.speechVoices;
     languageSet = [NSMutableArray new];
@@ -70,6 +72,8 @@ NSMutableArray<NSString *> *languageSet;
 }
 
 + (void)speak:(NSString *)text options:(NSDictionary *)options result:(FlutterResult)result{
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
     utterance = [AVSpeechUtterance speechUtteranceWithString:text];
     utterance.pitchMultiplier = [options[@"pitch"] floatValue];
     if ([options[@"speechRate"] floatValue] == 1){
@@ -80,10 +84,13 @@ NSMutableArray<NSString *> *languageSet;
     utterance.volume = [options[@"volume"] floatValue];
     utterance.voice = selectedVoice;
     [synth speakUtterance:utterance];
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
 }
 
 + (void)stop:(FlutterResult)result{
     [synth stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
 }
 
 @end
