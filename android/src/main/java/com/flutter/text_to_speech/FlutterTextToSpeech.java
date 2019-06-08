@@ -70,26 +70,12 @@ class FlutterTextToSpeech implements TTSAgent, TextToSpeech.OnInitListener {
         ttsAgent.setPitch(Float.parseFloat(options.get("pitch").toString()));
         ttsAgent.setSpeechRate(Float.parseFloat(options.get("speechRate").toString()));
         bundle.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, Float.parseFloat(options.get("volume").toString()));
-        final String silent = UUID.randomUUID().toString();
-        ttsAgent.playSilentUtterance(Long.parseLong(options.get("delay").toString())*1000, TextToSpeech.QUEUE_FLUSH, silent);
-        ttsAgent.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-            @Override
-            public void onStart(String s) {
-
-            }
-
-            @Override
-            public void onDone(String s) {
-                if (s.equals(silent)){
-                    ttsAgent.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, UUID.randomUUID().toString());
-                }
-            }
-
-            @Override
-            public void onError(String s) {
-
-            }
-        });
+        if (options.get("delay").equals(new Integer(0))){
+            ttsAgent.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, UUID.randomUUID().toString());
+        }
+        long delay = Long.parseLong(options.get("delay").toString())*1000;
+        ttsAgent.playSilentUtterance(delay, TextToSpeech.QUEUE_FLUSH, UUID.randomUUID().toString());
+        ttsAgent.speak(text, TextToSpeech.QUEUE_ADD, bundle, UUID.randomUUID().toString());
     }
 
     @Override
