@@ -1,5 +1,7 @@
 # flutter_text_to_speech
 
+![Pub](https://img.shields.io/pub/v/flutter_text_to_speech.svg?color=orange)
+
 [WIP]
 
 ## Getting Started
