@@ -8,7 +8,7 @@ AVSpeechSynthesizer *synth;
 AVSpeechSynthesisVoice *selectedVoice;
 AVSpeechUtterance *utterance;
 NSArray<AVSpeechSynthesisVoice *> *voices;
-NSMutableArray<NSString *> *languageSet;
+NSMutableArray<NSString *> *ttsLanguageSet;
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FlutterMethodChannel* channel = [FlutterMethodChannel
@@ -44,27 +44,27 @@ NSMutableArray<NSString *> *languageSet;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord mode:AVAudioSessionModeDefault options:(AVAudioSessionCategoryOptionAllowBluetooth|AVAudioSessionCategoryOptionDefaultToSpeaker) error:&error];
     synth = [AVSpeechSynthesizer alloc];
     voices = AVSpeechSynthesisVoice.speechVoices;
-    languageSet = [NSMutableArray new];
+    ttsLanguageSet = [NSMutableArray new];
     for (AVSpeechSynthesisVoice *voice in voices){
         NSString *lang = [voice language];
-        [languageSet addObject:lang];
+        [ttsLanguageSet addObject:lang];
     }
     result(@(YES));
 }
 
 + (void)isLangAvailable:(NSString *)languageCode result:(FlutterResult)result{
-    if([languageSet containsObject:languageCode]){
+    if([ttsLanguageSet containsObject:languageCode]){
         result(@(YES));
     }
     result(@(NO));
 }
 
 + (void)getAvailableLanguages:(FlutterResult)result{
-    result(languageSet);
+    result(ttsLanguageSet);
 }
 
 + (void)setLanguage:(NSString *)languageCode result:(FlutterResult)result{
-    if([languageSet containsObject:languageCode]){
+    if([ttsLanguageSet containsObject:languageCode]){
         selectedVoice = [AVSpeechSynthesisVoice voiceWithLanguage:languageCode];
         result(@(YES));
     }

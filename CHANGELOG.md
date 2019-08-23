@@ -1,3 +1,7 @@
+## 3.0.7
+
+* Integration Updates
+
 ## 3.0.6
 
 * Error fix
