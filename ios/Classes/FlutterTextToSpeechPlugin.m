@@ -86,12 +86,14 @@ NSMutableArray<NSString *> *ttsLanguageSet;
     utterance.voice = selectedVoice;
     [synth speakUtterance:utterance];
     [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
+    result(@(YES));
 }
 
 + (void)stop:(FlutterResult)result{
     [synth stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
     NSError *error;
     [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&error];
+    result(@(YES));
 }
 
 @end

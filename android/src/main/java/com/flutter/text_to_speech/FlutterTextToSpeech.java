@@ -75,6 +75,7 @@ class FlutterTextToSpeech implements TTSAgent, TextToSpeech.OnInitListener {
         long delay = Long.parseLong(options.get("delay").toString())*1000;
         ttsAgent.playSilentUtterance(delay, TextToSpeech.QUEUE_FLUSH, UUID.randomUUID().toString());
         ttsAgent.speak(text, TextToSpeech.QUEUE_ADD, bundle, UUID.randomUUID().toString());
+        result.success(true);
     }
 
     @Override
@@ -84,6 +85,7 @@ class FlutterTextToSpeech implements TTSAgent, TextToSpeech.OnInitListener {
         ttsAgent = null;
         initResult = null;
         bundle.clear();
+        result.success(true);
     }
 
 }
